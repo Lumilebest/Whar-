@@ -1,0 +1,16 @@
+# Build
+build/
+bin/
+obj/
+
+# IDE
+.vscode/
+.idea/
+
+# Compiled files
+*.o
+*.a
+*.so
+*.dll
+*.exe
+*.out
