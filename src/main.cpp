@@ -1,18 +1,22 @@
 #include <SDL3/SDL.h>
+#include "entity/entity.hpp"
 
 int main() {
-    SDL_Init(SDL_INIT_VIDEO);
+    SDL_Window* window = SDL_CreateWindow("Fenêtre", 800, 600, SDL_WINDOW_RESIZABLE);
+    SDL_Renderer* renderer = SDL_CreateRenderer(window, nullptr);
 
-    SDL_Window* window = SDL_CreateWindow("SDL3", 800, 600, 0);
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, NULL);
+    Entity e;
+    e.draw();
 
     bool running = true;
-    SDL_Event e;
+    SDL_Event event;
     while (running) {
-        while (SDL_PollEvent(&e)){
-            if (e.type == SDL_EVENT_QUIT) running = false;
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_EVENT_QUIT) running = false;
+            if (event.type == SDL_EVENT_KEY_DOWN && event.key.key == SDLK_ESCAPE) running = false;
         }
-        SDL_SetRenderDrawColor(renderer, 30, 30, 30, 255);
+
+        SDL_SetRenderDrawColor(renderer, 30, 30, 255, 255);
         SDL_RenderClear(renderer);
         SDL_RenderPresent(renderer);
     }
