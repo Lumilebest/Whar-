@@ -4,8 +4,10 @@
 class Entity {
 public:
     Entity();
-    bool entityCollide(Entity);
+    Entity(float x,float y,float w,float h);
+    bool collide(Entity& e2);
+    void draw(SDL_Renderer* renderer);
+
 private:
-    SDL_FPoint position;
-    SDL_FPoint size;
+    SDL_FRect rect;
 };

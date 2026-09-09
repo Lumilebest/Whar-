@@ -1,12 +1,20 @@
 #include "entity/entity.hpp"
-#include <iostream>
 #include <SDL3/SDL.h>
+#include <SDL3/SDL_render.h>
 
 Entity::Entity(){
-    position = {100.0f, 100.0f};
-    size = {50.0f, 50.0f};
+    rect = {100.0f,100.0f,50.0f,50.0f};
 }
 
-bool Entity::entityCollide(Entity e2){
-    return this->position.x < e2.position.x+e2.size.x && this->position.x+this->size.x>e2.position.x && this->position.y<e2.position.y+e2.size.y && this->position.y+this->size.y>e2.position.y;
+Entity::Entity(float x, float y, float w, float h){
+    rect = {x,y,w,h};
+}
+
+bool Entity::collide(Entity& e2){
+    return this->rect.x < e2.rect.x+e2.rect.w && this->rect.x+this->rect.w>e2.rect.x && this->rect.y<e2.rect.y+e2.rect.h && this->rect.y+this->rect.h>e2.rect.y;
+}
+
+void Entity::draw(SDL_Renderer* renderer){
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    SDL_RenderRect(renderer, &rect);
 }
