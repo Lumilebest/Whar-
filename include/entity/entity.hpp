@@ -1,8 +1,11 @@
+#include <SDL3/SDL.h>
 #pragma once
 
 class Entity {
 public:
-    int life;
-    int speed;
-    void draw();
+    Entity();
+    bool entityCollide(Entity);
+private:
+    SDL_FPoint position;
+    SDL_FPoint size;
 };
