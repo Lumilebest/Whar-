@@ -18,3 +18,11 @@ void Entity::draw(SDL_Renderer* renderer){
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
     SDL_RenderRect(renderer, &rect);
 }
+
+void Entity::setX(float x){
+    this->rect.x = x;
+}
+
+void Entity::setY(float y){
+    this->rect.y = y;
+}

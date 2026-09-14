@@ -1,15 +1,15 @@
 #include <SDL3/SDL.h>
 #include "entity/entity.hpp"
+#include "map/map.hpp"
 #include <SDL3/SDL_power.h>
 #include <SDL3/SDL_render.h>
 #include <iostream>
 
 int main() {
-    SDL_Window* window = SDL_CreateWindow("Fenêtre", 800, 600, SDL_WINDOW_RESIZABLE);
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, nullptr);
+    SDL_Window* win = SDL_CreateWindow("Fenêtre", 800, 600, SDL_WINDOW_RESIZABLE);
+    SDL_Renderer* ren = SDL_CreateRenderer(win, nullptr);
 
-    Entity e1;
-    Entity e2(0,0,1000,1000);
+    Map map(ren, "res/image.png");
 
     bool running = true;
     SDL_Event event;
@@ -18,19 +18,16 @@ int main() {
             if (event.type == SDL_EVENT_QUIT) running = false;
             if (event.type == SDL_EVENT_KEY_DOWN && event.key.key == SDLK_ESCAPE) running = false;
         }
+        SDL_SetRenderDrawColor(ren, 0,255,255,255);
+        SDL_RenderClear(ren);
 
-        SDL_SetRenderDrawColor(renderer, 0,255,255,255);
-        SDL_RenderClear(renderer);
-        e1.draw(renderer);
-        e2.draw(renderer);
-        SDL_RenderPresent(renderer);
-        if (e1.collide(e2)){
-            std::cout << "oui";
-        }
+        map.render(ren, 0,0);
+
+        SDL_RenderPresent(ren);
     }
 
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
+    SDL_DestroyRenderer(ren);
+    SDL_DestroyWindow(win);
     SDL_Quit();
     return 0;
 }
