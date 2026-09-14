@@ -1,8 +1,8 @@
 COMPILE := g++
 COMPILEFLAGS := -std=c++20 -Wall -Wextra -Iinclude
-LIB := -lSDL3
+LIB := -lSDL3 -lSDL3_image
 
-SRC := $(wildcard src/*.cpp src/*/*.cpp)
+SRC := $(shell find src -name '*.cpp')
 OBJ := $(patsubst src/%.cpp, build/%.o, $(SRC))
 BIN := build/monjeu
 

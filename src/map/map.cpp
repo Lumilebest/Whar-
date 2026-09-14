@@ -1,4 +1,4 @@
-#include "map/Map.hpp"
+#include "map/map.hpp"
 #include <SDL3_image/SDL_image.h>
 
 Map::Map(SDL_Renderer* ren, const char* path){

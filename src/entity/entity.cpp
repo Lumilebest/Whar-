@@ -11,7 +11,7 @@ Entity::Entity(float x, float y, float w, float h){
 }
 
 bool Entity::collide(Entity& e2){
-    return this->rect.x < e2.rect.x+e2.rect.w && this->rect.x+this->rect.w>e2.rect.x && this->rect.y<e2.rect.y+e2.rect.h && this->rect.y+this->rect.h>e2.rect.y;
+    return rect.x < e2.rect.x+e2.rect.w && rect.x+rect.w>e2.rect.x && rect.y<e2.rect.y+e2.rect.h && rect.y+rect.h>e2.rect.y;
 }
 
 void Entity::draw(SDL_Renderer* renderer){
@@ -20,9 +20,15 @@ void Entity::draw(SDL_Renderer* renderer){
 }
 
 void Entity::setX(float x){
-    this->rect.x = x;
+    rect.x = x;
+}
+void Entity::setY(float y){
+    rect.y = y;
 }
 
-void Entity::setY(float y){
-    this->rect.y = y;
+float Entity::getX(){
+    return rect.x;
+}
+float Entity::getY(){
+    return rect.y;
 }
