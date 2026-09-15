@@ -1,6 +1,7 @@
 #include <SDL3/SDL.h>
 #include "entity/moving/movingEntity.hpp"
 #include "map/map.hpp"
+#include "wave/wave.hpp"
 #include <SDL3/SDL_power.h>
 #include <SDL3/SDL_render.h>
 #include <SDL3/SDL_stdinc.h>
@@ -11,25 +12,19 @@ int main() {
     SDL_Renderer* ren = SDL_CreateRenderer(win, nullptr);
 
 
-    MovingEntity e1 = MovingEntity(50,50,10,10,5);
+    Wave wave;
 
     bool running = true;
     SDL_Event event;
 
-    Uint64 lastTime = SDL_GetTicks();
+    Uint64 time;
 
     while (running) {
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_EVENT_QUIT) running = false;
             if (event.type == SDL_EVENT_KEY_DOWN && event.key.key == SDLK_ESCAPE) running = false;
         }
-
-        Uint64 time = SDL_GetTicks();
-        if (time - lastTime >= 200){
-            e1.move();
-            lastTime = time;
-        }
-
+        time = SDL_GetTicks();
 
         SDL_SetRenderDrawColor(ren, 0,255,255,255);
         SDL_RenderClear(ren);
