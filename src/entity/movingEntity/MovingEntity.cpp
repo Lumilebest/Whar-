@@ -8,10 +8,10 @@ MovingEntity::MovingEntity(float x, float y, float w, float h, float s)
 }
 
 void MovingEntity::move(float delta, const SDL_FPoint* point){
-    SDL_FPoint vec = {point->x-rect.x, point->y-rect.y};
+    SDL_FPoint vec = {point->x-rect.x-(rect.w/2), point->y-rect.y-(rect.h/2)};
     float l = std::sqrt(vec.x*vec.x+vec.y*vec.y);
-
-    rect.x += (vec.x/l)*speed*delta;
+    
+    rect.x += (vec.x/l)*(speed)*delta;
     rect.y += (vec.y/l)*speed*delta;
 }
 
