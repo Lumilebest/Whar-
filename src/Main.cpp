@@ -1,4 +1,3 @@
-#include "entity/movingEntity/MovingEntity.hpp"
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_mouse.h>
 #include <SDL3/SDL_power.h>
@@ -11,7 +10,6 @@ int main() {
     SDL_Window* win = SDL_CreateWindow("Fenêtre", 800, 600, SDL_WINDOW_RESIZABLE);
     SDL_Renderer* ren = SDL_CreateRenderer(win, nullptr);
 
-    MovingEntity e(50,50,50,50,1500);
 
     SDL_FPoint mouse;
 
@@ -32,11 +30,8 @@ int main() {
 
         SDL_GetMouseState(&mouse.x, &mouse.y);
 
-        e.move(delta, &mouse);
-
         SDL_SetRenderDrawColor(ren, 0,255,0,255);
         SDL_RenderClear(ren);
-        e.drawCollide(ren);
 
         SDL_RenderPresent(ren);
         lastTime = time;
