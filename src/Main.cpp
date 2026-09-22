@@ -1,3 +1,5 @@
+#include "components.hpp"
+#include "systems/sparseset.hpp"
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_mouse.h>
 #include <SDL3/SDL_power.h>
@@ -19,6 +21,11 @@ int main() {
     Uint64 lastTime = SDL_GetTicks();
     Uint64 time;
     float delta = 0.0f;
+
+
+    SparseSet<Velocity> velocitys;
+    SparseSet<Collider> colliders;
+    SparseSet<AI> ais;
 
     while (running) {
         while (SDL_PollEvent(&event)) {
