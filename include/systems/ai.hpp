@@ -1,5 +1,4 @@
 #pragma once
-
 #include "components.hpp"
 #include "entityid.hpp"
 #include "systems/sparseset.hpp"
