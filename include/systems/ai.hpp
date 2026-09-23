@@ -3,4 +3,4 @@
 #include "entityid.hpp"
 #include "systems/sparseset.hpp"
 
-void process(EntityID id, SparseSet<AI> ais, SparseSet<Velocity> velocitys, SparseSet<Collider> colliders);
+void process(EntityID id, SparseSet<AI> ais, SparseSet<Velocity> velocitys, SparseSet<Collider> colliders, SparseSet<Target> targets);

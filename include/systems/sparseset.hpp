@@ -17,5 +17,7 @@ class SparseSet{
         void add(EntityID id, Args&&... args);
         void remove(EntityID id);
         void clear();
-        T get(EntityID id);
+        std::unordered_map<EntityID, size_t>* getSparse();
+        T* get(EntityID id);
+        void set(EntityID id , T dat);
 };

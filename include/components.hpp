@@ -18,7 +18,9 @@ struct Velocity:Component{
     glm::vec2 direction;
 };
 
-
+struct Target: Component{
+    EntityID target;
+};
 
 enum IAType{
     Rusher
