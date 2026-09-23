@@ -1,4 +1,5 @@
 #pragma once
+#include "entityid.hpp"
 #include "components.hpp"
 #include <SDL3/SDL_rect.h>
 #include <cstddef>
@@ -16,7 +17,7 @@ struct BuildData {
 inline const BuildData& getBuild(buildName id){
     static const BuildData table[] = {
         // Zombie
-        { .collider = {NULL,0, 0, 32, 32}, .velocity = {NULL, 40.0f, {0,0}}, .aiType = Rusher },
+        { .collider = {0,0, 0, 32, 32}, .velocity = Velocity(INVALID_ENTITY, 40.0f, 0,0), .aiType = Rusher },
     };
     return table[static_cast<size_t>(id)];
 };

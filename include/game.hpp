@@ -1,7 +1,9 @@
 #pragma once
 #include "components.hpp"
 #include "entityid.hpp"
-#include "systems/sparseset.hpp"
+#include "sparseset.hpp"
+#include <SDL3/SDL.h>
+#include <SDL3/SDL_render.h>
 
 class Game{
     private:
@@ -11,12 +13,16 @@ class Game{
         SparseSet<Target> targets;
 
         EntityID player;
-
         EntityID nextId = 0;
+        SDL_Renderer* ren;
+
 
 
     public:
+        Game(SDL_Renderer* ren);
         void update();
-        void spawn();
+        void process();
+        EntityID spawn();
+        EntityID spawn(float x, float y);
         void draw();
 };
