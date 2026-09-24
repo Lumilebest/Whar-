@@ -5,9 +5,9 @@
 #include <glm/ext/vector_float2.hpp>
 #include <glm/geometric.hpp>
 
-inline void computVelocity(auto id, entt::registry* registry){
-    Collider* rect = registry->get<Collider>(id);
-    Collider* rectTarget = registry->get<Collider>(registry->get<Target>(id));
+inline void toEnemyDirection(auto id, entt::registry* registry){
+    Collider* rect = &registry->get<Collider>(id);
+    Collider* rectTarget = &registry->get<Collider>(registry->get<Target>(id));
     
     glm::vec2 dir = {
         rectTarget->rect.x - rect->rect.x,
@@ -17,6 +17,6 @@ inline void computVelocity(auto id, entt::registry* registry){
         dir = glm::normalize(dir);
     }
     
-    Velocity* v = registry->get<Velocity>(id);
+    Velocity* v = &registry->get<Velocity>(id);
     v->direction = dir;
 }
