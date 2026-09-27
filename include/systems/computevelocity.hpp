@@ -7,13 +7,13 @@
 
 inline void toEnemyDirection(auto id, entt::registry* registry){
     Collider* rect = &registry->get<Collider>(id);
-    Collider* rectTarget = &registry->get<Collider>(registry->get<Target>(id));
+    Collider* rectTarget = &registry->get<Collider>(registry->get<Target>(id).id);
     
     glm::vec2 dir = {
         rectTarget->rect.x - rect->rect.x,
         rectTarget->rect.y - rect->rect.y 
     };
-    if ( dir.length()!=0){
+    if ( glm::length(dir)!=0 ){
         dir = glm::normalize(dir);
     }
     

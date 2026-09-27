@@ -7,6 +7,6 @@
 inline void moveEntity(entt::entity id ,entt::registry* registry, Uint64 delta){
     Collider* collider = &registry->get<Collider>(id); 
     Velocity* velocity = &registry->get<Velocity>(id);
-    collider->rect.x = velocity->direction.x*velocity->speed*delta;
-    collider->rect.y = velocity->direction.y*velocity->speed*delta;
+    collider->rect.x += velocity->direction.x*velocity->speed*delta;
+    collider->rect.y += velocity->direction.y*velocity->speed*delta;
 }

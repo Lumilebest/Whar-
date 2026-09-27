@@ -5,7 +5,6 @@
 #include <SDL3/SDL_render.h>
 #include <SDL3/SDL_stdinc.h>
 #include "systems/computeai.hpp"
-#include "systems/move.hpp"
 
 World::World(SDL_Renderer* ren, Uint64 time): ren(ren), time(time), lastTime(time), lastTimeSpawn(time){
     player = registry.create();
@@ -14,7 +13,7 @@ World::World(SDL_Renderer* ren, Uint64 time): ren(ren), time(time), lastTime(tim
        
 void World::update(){
     time = SDL_GetTicks();
-    delta = time-lastTime;
+    delta = time-lastTime/1000.0f;
     createEntity();
     comput();
     lastTime = time;
@@ -25,7 +24,6 @@ void World::comput(){
         computAI(id, &registry, delta);
     }
 }
-
 
 void World::drawCollide(){
     for (auto id: registry.view<Collider>()){
@@ -40,5 +38,7 @@ void World::createEntity(){
         registry.emplace<Collider>(id,SDL_FRect{0,0,10,10});
         registry.emplace<Velocity>(id, 10.0f, glm::vec2{0,0});
         registry.emplace<AI>(id, Rusher);
+        registry.emplace<Target>(id, player);
+        lastTimeSpawn = time;
     }
 }
