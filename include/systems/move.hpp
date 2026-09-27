@@ -4,7 +4,7 @@
 #include <entt/entity/fwd.hpp>
 #include <entt/entt.hpp>
 
-inline void moveEntity(entt::entity id ,entt::registry* registry, Uint64 delta){
+inline void moveEntity(entt::entity id ,entt::registry* registry, float delta){
     Collider* collider = &registry->get<Collider>(id); 
     Velocity* velocity = &registry->get<Velocity>(id);
     collider->rect.x += velocity->direction.x*velocity->speed*delta;

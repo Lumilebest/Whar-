@@ -12,7 +12,7 @@ class World{
         Uint64 time;
         Uint64 lastTime;
         Uint64 lastTimeSpawn;
-        Uint64 delta;
+        float delta;
         entt::entity player;
 
     public:

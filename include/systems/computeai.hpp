@@ -6,7 +6,7 @@
 #include "systems/computevelocity.hpp"
 #include "systems/move.hpp"
 
-inline void computAI(auto id ,entt::registry* registry, Uint64 delta){
+inline void computAI(auto id ,entt::registry* registry, float delta){
     switch(registry->get<AI>(id).type){
         case Rusher:
             toEnemyDirection(id, registry);

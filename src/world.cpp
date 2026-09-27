@@ -13,10 +13,12 @@ World::World(SDL_Renderer* ren, Uint64 time): ren(ren), time(time), lastTime(tim
        
 void World::update(){
     time = SDL_GetTicks();
-    delta = time-lastTime/1000.0f;
-    createEntity();
-    comput();
-    lastTime = time;
+    if (time - lastTime >= 16){ // ~60 ticks/s (ms)
+        delta = (time - lastTime) / 1000.0f; // secondes
+        createEntity();
+        comput();
+        lastTime = time;
+    }
 }
 
 void World::comput(){
@@ -36,7 +38,7 @@ void World::createEntity(){
     if ( time - lastTimeSpawn >= 5000 ){
         auto id = registry.create();
         registry.emplace<Collider>(id,SDL_FRect{0,0,10,10});
-        registry.emplace<Velocity>(id, 10.0f, glm::vec2{0,0});
+        registry.emplace<Velocity>(id, 100.0f, glm::vec2{0,0});
         registry.emplace<AI>(id, Rusher);
         registry.emplace<Target>(id, player);
         lastTimeSpawn = time;
