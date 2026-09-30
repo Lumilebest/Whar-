@@ -3,7 +3,7 @@
 #include <entt/entity/fwd.hpp>
 #include <iostream>
 #include "component.hpp"
-#include "systems/computevelocity.hpp"
+#include "systems/direction/toEnemyDirection.hpp"
 #include "systems/move.hpp"
 
 inline void computAI(auto id ,entt::registry* registry, float delta){
