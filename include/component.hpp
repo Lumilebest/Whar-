@@ -19,6 +19,7 @@ struct Target{
 };
 
 enum AIType{
+    Player,
     Rusher
 };
 

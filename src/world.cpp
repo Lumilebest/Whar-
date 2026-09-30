@@ -9,6 +9,10 @@
 World::World(SDL_Renderer* ren, Uint64 time): ren(ren), time(time), lastTime(time), lastTimeSpawn(time){
     player = registry.create();
     registry.emplace<Collider>(player, SDL_FRect{500,500,15,15});
+    registry.emplace<Velocity>(player, 200.0f, glm::vec2{0,0});
+    registry.emplace<AI>(player, Player);
+    registry.emplace<Target>(player, player);
+    lastTimeSpawn = time;
 }
        
 void World::update(){
